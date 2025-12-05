@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: person-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=1
+
+  frontend:
+    build: ./person-frontend
+    container_name: person-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
